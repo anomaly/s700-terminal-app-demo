@@ -11,13 +11,14 @@ Sections under here are what I found while I was trying to figure out both Andro
 best practices and the particulars of S700 applications (read the section on [differences between
 Standard Android](https://docs.stripe.com/terminal/features/apps-on-devices/overview#differences-from-standard-android).
 
-
 ## Checklist
+
+The demo repository explores the following with docs and samples:
 
 - [ ] Basic setup and build
 - [ ] Additional library recommendations
 - [ ] Stripe SDK working inside the app with UI widgets
-- [ ] Network communication
+- [ ] Network communication for application level interaction (REST calls)
 
 ### Operating Environment
 
@@ -38,6 +39,8 @@ dependencies {
    implementation("com.stripe:stripeterminal-handoffclient:4.1.0")
 }
 ```
+`Application` subclass to initialise the Terminal SDK.
+
 
 Summary:
 - Initialise using Android 10 project template with a single Activity
@@ -46,7 +49,7 @@ Summary:
 
 ### Additional Libraries
 
-OkHttpClient
+- [OkHttp](https://square.github.io/okhttp/), HTTP client from Square (saw this in the Stripe sample app)
 
 ## References
 
