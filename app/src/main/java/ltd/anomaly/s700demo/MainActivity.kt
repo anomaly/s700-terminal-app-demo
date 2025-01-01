@@ -6,11 +6,15 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.Button
+
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import ltd.anomaly.s700demo.ui.theme.S700DemoTheme
 
 class MainActivity : ComponentActivity() {
@@ -36,6 +40,13 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         text = "Hello $name!",
         modifier = modifier
     )
+    // Insert a new clickable button
+    Button(
+        onClick = { /* Do something! */ },
+        shape = RoundedCornerShape(8.dp)
+    ) {
+        Text("Click me!")
+    }
 }
 
 @Preview(showBackground = true)
