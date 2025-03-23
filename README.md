@@ -1,5 +1,8 @@
 # Stripe S700 Terminal Demo App
 
+> [!WARNING]
+> This repository is under heavily development, please wait for a release to be published along with relevant documentation for it to be useful
+
 This repository contains the source for a demo Stripe Terminal on Device app designed to run on
 their S700 Terminals. The aim of this project is to collect step by step learnings of how to
 build an Android app for these devices (including wisdom on App SDK versions, target 
