@@ -9,7 +9,6 @@ class S700DemoApp : Application() {
     override fun onCreate() {
         super.onCreate()
         // Print a message to the log
-        Log.e("Hello", "World")
         TerminalApplicationDelegate.onCreate(this)
     }
 }

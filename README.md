@@ -50,8 +50,24 @@ Summary:
 - Set `compileSdk` and `targetSdk` to `35`
 - See [list of permissions automatically granted](https://docs.stripe.com/terminal/features/apps-on-devices/overview#android-permissions) to the app
 
+## Understanding the codebase
 
-## OpenApi3 Code Generation
+
+## S700DemoApp.kt
+
+Initialise the Terminal SDK
+
+## MainActivity.kt
+
+Jetpack Compose UI
+
+## Terminal event listener
+
+## Token provider
+
+## Checkout model
+
+## OpenApi3 code generation
 
 I was interested in generating the client code for the API from the OpenAPI3 spec. Before I got to this I wanted to build a basic HTTP client and parse the JSON using dataclasses to understand how networking works and `OkHttp`.
 
@@ -62,7 +78,7 @@ The general premise is to be able to keep up to date with the API endpoints that
 I wrote a very basic `dataclass` to parse the `TokenResponse` JSON object.
 
 ```kotlin
-package ltd.anomaly.banjara.models
+package ltd.anomaly.s700demo.models
 
 import kotlinx.serialization.Serializable
 
@@ -73,14 +89,14 @@ data class TokenResponse(val token: String)
 And then used `HttpURLConnection` to make a GET request to the server and parse the JSON response. Note that I am using the `kotlinx.serialization` library to parse the JSON response (this is later removed from the project as I get Fabrikt to generate the client code).
 
 ```kotlin
-package ltd.anomaly.banjara.network
+package ltd.anomaly.s700demo.network
 
 // Experimental
 import java.net.HttpURLConnection
 import java.net.URL
 
 import kotlinx.serialization.json.Json
-import ltd.anomaly.banjara.models.TokenResponse
+import ltd.anomaly.s700demo.models.TokenResponse
 
 
 public object ManualApiClient {
@@ -176,7 +192,7 @@ Once you have done that, configure 'Fabrikt' in your `build.gradle.kts` file. He
 fabrikt {
     generate("alonnah") {
         apiFile = file("src/main/openapi/alonnah.yaml")
-        basePackage = "ltd.anomaly.banjara.api"
+        basePackage = "ltd.anomaly.s700demo.api"
         client {
             generate = enabled
         }
@@ -184,7 +200,7 @@ fabrikt {
 }
 ```
 
-> Note that I have provided the package name `ltd.anomaly.banjara.api` and the path to the OpenApi3 spec file `src/main/openapi/alonnah.yaml`. The `client` generation is diabled by default, you can enable it by setting `generate = enabled`.
+> Note that I have provided the package name `ltd.anomaly.s700demo.api` and the path to the OpenApi3 spec file `src/main/openapi/alonnah.yaml`. The `client` generation is diabled by default, you can enable it by setting `generate = enabled`.
 
 At this point you can run `./gradlew fabriktGenerate` to generate the client, however you can add the following `task` to generate the client before the compilation of the Kotlin code:
 
@@ -209,7 +225,7 @@ android {
 }
 ```
 
-This will allow you to use the generated client code in your project. The generated client code is in the `ltd.anomaly.banjara.api` package.
+This will allow you to use the generated client code in your project. The generated client code is in the `ltd.anomaly.s700demo.api` package.
 
 ```kotlin
 Button(
